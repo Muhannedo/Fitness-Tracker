@@ -65,4 +65,20 @@ router.put("/:id", verifyToken, async (req, res) => {
   }
 });
 
+// DELETE WORKOUT
+router.delete("/:id", verifyToken, async (req, res) => {
+  try {
+    const workout = await Workout.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!workout) {
+      return res.status(404).send({ message: "Workout not found" });
+    }
+    res.send(workout);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
