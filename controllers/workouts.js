@@ -45,4 +45,24 @@ router.get("/:id", verifyToken, async (req, res) => {
   }
 });
 
+// UPDATE WORKOUT
+router.put("/:id", verifyToken, async (req, res) => {
+  try {
+    const workout = await Workout.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!workout) {
+      return res.status(404).send({ message: "Workout not found" });
+    }
+    Object.keys(req.body).forEach((key) => {
+      workout[key] = req.body[key];
+    });
+    await workout.save();
+    res.send(workout);
+  } catch (error) {
+    res.status(400).send(error);
+  }
+});
+
 module.exports = router;
