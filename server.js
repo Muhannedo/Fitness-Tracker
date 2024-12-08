@@ -15,6 +15,7 @@ const testJWTRouter = require("./controllers/test-jwt");
 const usersRouter = require("./controllers/users");
 const profilesRouter = require("./controllers/profiles");
 const workoutsRouter = require("./controllers/workouts");
+const exercisesRouter = require("./controllers/exercises");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -31,6 +32,7 @@ app.use("/users", usersRouter);
 app.use(verifyToken);
 app.use("/profiles", profilesRouter);
 app.use("/workouts", workoutsRouter);
+app.use("/exercises", exercisesRouter);
 
 app.listen(PORT, () => {
   console.log("The express app is ready!");

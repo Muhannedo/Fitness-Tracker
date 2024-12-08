@@ -8,7 +8,7 @@ const router = express.Router();
 // Protected Routes
 router.use(verifyToken);
 // CREATE WORKOUT
-router.post("/", verifyToken, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const workout = new Workout(req.body);
     workout.user = req.user._id;
@@ -20,7 +20,7 @@ router.post("/", verifyToken, async (req, res) => {
 });
 
 // GET ALL WORKOUTS
-router.get("/", verifyToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const workouts = await Workout.find({ user: req.user._id });
     res.send(workouts);
@@ -30,7 +30,7 @@ router.get("/", verifyToken, async (req, res) => {
 });
 
 // GET WORKOUT BY ID
-router.get("/:id", verifyToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const workout = await Workout.findOne({
       _id: req.params.id,
@@ -46,7 +46,7 @@ router.get("/:id", verifyToken, async (req, res) => {
 });
 
 // UPDATE WORKOUT
-router.put("/:id", verifyToken, async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const workout = await Workout.findOne({
       _id: req.params.id,
@@ -66,7 +66,7 @@ router.put("/:id", verifyToken, async (req, res) => {
 });
 
 // DELETE WORKOUT
-router.delete("/:id", verifyToken, async (req, res) => {
+router.delete("/:id", async (req, res) => {
   try {
     const workout = await Workout.findOneAndDelete({
       _id: req.params.id,
