@@ -19,4 +19,26 @@ router.post("/", async (req, res) => {
   }
 });
 
+// READ EXERCISES
+router.get("/", async (req, res) => {
+  try {
+    const exercises = await Exercise.find();
+    res.send(exercises);
+  } catch (error) {
+    res.status;
+  }
+});
+
+// READ EXERCISE BY ID
+router.get("/:id", async (req, res) => {
+  try {
+    const exercise = await Exercise.findById(req.params.id);
+    if (!exercise) {
+      return res.status(404).send();
+    }
+    res.send(exercise);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
 module.exports = router;
