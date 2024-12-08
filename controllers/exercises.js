@@ -41,4 +41,24 @@ router.get("/:id", async (req, res) => {
     res.status(500).send(error);
   }
 });
+
+// UPDATE EXERCISE
+router.put("/:id", async (req, res) => {
+  try {
+    const exercise = await Exercise.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!exercise) {
+      return res.status(404).send({ message: "Exercise not found" });
+    }
+    Object.keys(req.body).forEach((key) => {
+      exercise[key] = req.body[key];
+    });
+    await exercise.save();
+    res.send(exercise);
+  } catch (error) {
+    res.send(400).send(error);
+  }
+});
 module.exports = router;
