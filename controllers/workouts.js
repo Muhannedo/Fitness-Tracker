@@ -29,4 +29,20 @@ router.get("/", verifyToken, async (req, res) => {
   }
 });
 
+// GET WORKOUT BY ID
+router.get("/:id", verifyToken, async (req, res) => {
+  try {
+    const workout = await Workout.findOne({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!workout) {
+      return res.status(404).send({ message: "Workout not found" });
+    }
+    res.send(workout);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
