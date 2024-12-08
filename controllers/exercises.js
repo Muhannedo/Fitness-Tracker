@@ -61,4 +61,21 @@ router.put("/:id", async (req, res) => {
     res.send(400).send(error);
   }
 });
+
+// DELETE EXERCISE
+router.delete("/:id", async (req, res) => {
+  try {
+    const exercise = await Exercise.findOneAndDelete({
+      _id: req.params.id,
+      user: req.user._id,
+    });
+    if (!exercise) {
+      return res.status(404).send({ message: "Exercise not found" });
+    }
+    res.send(exercise);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
