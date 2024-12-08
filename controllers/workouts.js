@@ -19,4 +19,14 @@ router.post("/", verifyToken, async (req, res) => {
   }
 });
 
+// GET ALL WORKOUTS
+router.get("/", verifyToken, async (req, res) => {
+  try {
+    const workouts = await Workout.find({ user: req.user._id });
+    res.send(workouts);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+
 module.exports = router;
