@@ -9,11 +9,9 @@ The Fitness Tracker App helps users manage their workouts by logging exercises, 
 # User Stories: 
 1.	As a user, I want to create a new workout so that I can track my exercises for the day.
 2.	As a user, I want to view a list of my past workouts so that I can monitor my progress.
-3.	As a user, I want to edit a workout so that I can update my exercise details if they change.
-4.	As a user, I want to delete a workout so that I can remove old or incorrect entries.
-5.	As a user, I want to log my daily meals so I can track my calorie and macronutrient intake.
-6. as a user i want to be able to add new exercises  
-7. as a user i want to be able to add my previous exercises 
+3.	As a user, I want to see a workout so that I can update my exercise details if they change.
+4. as a user i want to be able to add new exercises  
+5. as a user i want to be able to add my previous exercises 
 
 # Technologies Used : 
 -	Node.js
